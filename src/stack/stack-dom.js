@@ -44,20 +44,36 @@ const generateWarningStack = type => {
 };
 
 const addToStack = () => {
-  if (newStack.push(stackInput.value) === 'Stack Overflow') {
-    generateWarningStack('overflow');
-  } else {
+  try{
+    newStack.push(stackInput.value)
     clearStackInput();
     renderListStack();
+  }catch(err){
+    generateWarningStack('overflow')
   }
+
+  // if (newStack.push(stackInput.value) === 'Stack Overflow') {
+  //   generateWarningStack('overflow');
+  // } else {
+  //   clearStackInput();
+  //   renderListStack();
+  // }
 };
 
 const removeFromStack = () => {
-  if (newStack.pop() === 'Stack Underflow') {
-    generateWarningStack('underflow');
-  } else {
+  try{
+    newStack.pop()
     renderListStack();
+  }catch(err){
+    generateWarningStack('underflow');
   }
+
+
+  // if (newStack.pop() === 'Stack Underflow') {
+  //   generateWarningStack('underflow');
+  // } else {
+  //   renderListStack();
+  // }
 };
 
 addStackBtn.addEventListener('click', addToStack);
